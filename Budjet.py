@@ -11,17 +11,17 @@ class Money(object):
         return self.amount
         
 class Expenditure(Money):
-    """ ExchangeRate is an instance of an object of class 'EuroExchangeRates'"""
-    def __init__(self,amount,currency,BudjetCurrency,ExchangeRates):
+    """ 'ExchangeRates' is the exhange dictionary from an instance of an object of class 'EuroExchangeRates'"""
+    def __init__(self,amount,currency,BudgetCurrency,ExchangeRates):
         Money.__init__(self,amount)
         self.currency = currency
-        self.BudjetCurrency = BudjetCurrency
+        self.BudgetCurrency = BudgetCurrency
         self.ExchangeRates = ExchangeRates
         
-    def ConvertCurrency(self):
-        key = self.currency + '/' + self.BudjetCurrency
-        print key
+    def getConvertedCurrency(self):
+        key = self.currency + '/' + self.BudgetCurrency
         Rate = self.ExchangeRates[key][0]
+        print 'Converted to ' + self.ExchangeRates[key][1]
         converted = (self.amount/float(Rate))
         return converted
         
@@ -29,6 +29,7 @@ class Budjet(Money):
     def __init__(self,amount,currency):
         Money.__init__(self,amount)
         self.currency = currency
+        # Need to read some sort of Database for last daily budget amount
         
     def getCurrency(self):
         return self.currency
