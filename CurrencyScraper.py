@@ -1,5 +1,10 @@
 import urllib 
 
+import os
+
+# Full file path to the folder containing this file
+full_path = os.path.realpath(__file__)
+
 #Set up classes
 class Currency(object):
     def __init__(self, LookOnline ):
@@ -15,7 +20,7 @@ class Currency(object):
     def ReadConfigFile(self):
       if  isinstance(self,EuroExchangeRates):
         text = 'EUR' 
-        filename = 'C:/Users/peter/Documents/GitHub/TravelBudget/' + text + 'config.txt'
+        filename = (os.path.dirname(full_path)) + '/' + text + 'config.txt'
       EuroExchangeconfigfile = open(filename,'r')
       lines =  EuroExchangeconfigfile.readlines()
       #print lines
@@ -46,7 +51,7 @@ class Currency(object):
       if  isinstance(self,EuroExchangeRates):
         text = 'EUR'  
         url = 'www.themoneyconverter.com/rss-feed/' + text + '/rss.xml'
-        configfilename = 'C:/Users/peter/Documents/GitHub/TravelBudget/' + text + 'config.txt'
+        configfilename = (os.path.dirname(full_path)) + '/' + text + 'config.txt'
         
         websitepath = 'http://' + url
       try:
